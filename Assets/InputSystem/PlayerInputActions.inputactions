@@ -1,0 +1,34 @@
+{
+    "name": "PlayerInputActions",
+    "maps": [
+        {
+            "name": "BaseAttacks",
+            "id": "caad7b8d-e1ce-4794-b1fd-7a97c3a729c5",
+            "actions": [
+                {
+                    "name": "Punch",
+                    "type": "Button",
+                    "id": "fbe7a560-777b-49d5-97da-7413b9d96b3a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1d1ac570-a4fa-4d77-ad0c-bf7d568b4df2",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Punch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

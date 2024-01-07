@@ -15,6 +15,7 @@ public class CharacterMovement : MonoBehaviour
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
+    
     protected bool _readyToJump;
     
     protected float _currentMoveSpeed;

@@ -7,13 +7,14 @@ public class DynamicHitBox : MonoBehaviour
 {
     public Transform characterTransform;
     public LayerMask enemyLayer;
-    
+
     [Header("Debug")]
+    public bool drawDebugBoxInEditor = true;
     public bool debugPunch = true;
     public KeyCode punchKey = KeyCode.Alpha5;
     
     
-    public void CreateHitBox(Vector3 relativeBoxPosition, Vector3 boxSize, Action<Collider> actionOnHit)
+    public void CreateHitBox(Vector3 relativeBoxPosition, Vector3 boxSize, Action<Collider> actionOnHit, bool debugDraw = false)
     {
         Vector3 boxPosition = characterTransform.position + characterTransform.forward * relativeBoxPosition.z +
                               characterTransform.right * relativeBoxPosition.x +
@@ -28,7 +29,8 @@ public class DynamicHitBox : MonoBehaviour
             actionOnHit?.Invoke(hitCollider);
         }
         
-        DebugDrawBox(boxPosition, boxSize, boxRotation, Color.red, 2f);
+        if (debugDraw)
+            DebugDrawBox(boxPosition, boxSize, boxRotation, Color.red, 2f);
     }
     
     
@@ -81,7 +83,7 @@ public class DynamicHitBox : MonoBehaviour
     
     private void OnDrawGizmos()
     {
-        if (characterTransform != null)
+        if (characterTransform != null && drawDebugBoxInEditor)
         {
             Vector3 relBoxPos = Vector3.forward * 1f;
             Vector3 boxSize = new Vector3(1f, 1f, 1f);
