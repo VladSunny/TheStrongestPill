@@ -1444,6 +1444,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1262879112 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2031756321022106109, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
+  m_PrefabInstance: {fileID: 7164562112242311494}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1512769929
 GameObject:
   m_ObjectHideFlags: 0
@@ -1979,6 +1984,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 647445830}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 50.909}
+--- !u!95 &1699983521 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1247783556036457916, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
+  m_PrefabInstance: {fileID: 7164562112242311494}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1705281304
 GameObject:
   m_ObjectHideFlags: 0
@@ -2613,16 +2623,48 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7014567248852347854, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2031756321022106109, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7560666237611373015}
   m_SourcePrefab: {fileID: 100100000, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
 --- !u!54 &7560666237611373008 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 829017106899112086, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
   m_PrefabInstance: {fileID: 7164562112242311494}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7560666237611373015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262879112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e44592bf0de5fd5a491583e54a63de23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1699983521}
+  m1Punches:
+  - damage: 5
+    attackTrigger: Punch1
+    cooldown: 0.5
+  - damage: 10
+    attackTrigger: Punch2
+    cooldown: 0.5
+  - damage: 15
+    attackTrigger: Punch3
+    cooldown: 0.5
+  - damage: 20
+    attackTrigger: Punch4
+    cooldown: 0.5
+  _currentBasePunch: 0
+  comboTimer: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -27,14 +27,10 @@ public class BasePunchingSystem : MonoBehaviour
         public float cooldown;
     }
     
-    private void Awake()
+    protected virtual void Awake()
     {
         _dynamicHitBox = GetComponent<DynamicHitBox>();
         _playerRigidBody = GetComponent<Rigidbody>();
-        
-        PlayerInputActions playerInputActions = new PlayerInputActions();
-        playerInputActions.BaseAttacks.Enable();
-        playerInputActions.BaseAttacks.Punch.performed += Punch;
     }
 
     private void Update()
