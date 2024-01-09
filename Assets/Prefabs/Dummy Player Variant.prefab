@@ -206,6 +206,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 302.937
       objectReference: {fileID: 0}
+    - target: {fileID: 4866988668585466627, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
+      propertyPath: m_Name
+      value: PlayerBOdy
+      objectReference: {fileID: 0}
     - target: {fileID: 5289212992056461080, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -263,6 +267,7 @@ PrefabInstance:
     - {fileID: 1451177883681543244, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
     - {fileID: 4084470667951658538, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
     - {fileID: 2664485670410374330, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
+    - {fileID: 7014567248852347854, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
     m_RemovedGameObjects:
     - {fileID: 5185622058736576700, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
     - {fileID: 5276201427409047848, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
@@ -337,7 +342,9 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
+  drawDebugBoxInEditor: 1
   debugPunch: 1
+  punchKey: 54
 --- !u!114 &2330279714601707514
 MonoBehaviour:
   m_ObjectHideFlags: 0
