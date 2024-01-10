@@ -16,6 +16,11 @@ public class CharacterMovement : MonoBehaviour
     public float jumpCooldown;
     public float airMultiplier;
     
+    // public Animator animator;
+    protected Animator _animator;
+    protected static readonly int IsWalking = Animator.StringToHash("isWalking");
+    protected static readonly int Velocity = Animator.StringToHash("Velocity");
+    
     protected bool _readyToJump;
     
     protected float _currentMoveSpeed;
@@ -56,6 +61,7 @@ public class CharacterMovement : MonoBehaviour
     protected virtual void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
 

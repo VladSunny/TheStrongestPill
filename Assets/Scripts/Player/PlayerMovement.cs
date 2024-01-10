@@ -10,17 +10,13 @@ public class PlayerMovement : CharacterMovement
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode sprintKey = KeyCode.LeftShift;
     public KeyCode crouchKey = KeyCode.LeftControl;
-
-    [Header("From playerObj")]
-    public Animator animator;
+    
     public Transform orientation;
 
     private float _horizontalInput;
     private float _verticalInput;
 
     private Vector3 _moveDirection;
-
-    private static readonly int IsWalking = Animator.StringToHash("isWalking");
 
     protected override void Start()
     {
@@ -67,9 +63,15 @@ public class PlayerMovement : CharacterMovement
         _verticalInput = Input.GetAxisRaw("Vertical");
         
         if (_horizontalInput != 0f || _verticalInput != 0f)
-            animator.SetBool(IsWalking, true);
+        {
+            _animator.SetFloat(Velocity, _rb.velocity.magnitude);
+            _animator.SetBool(IsWalking, true);
+        }
         else
-            animator.SetBool(IsWalking, false);
+        {
+            _animator.SetFloat(Velocity, 0f);
+            _animator.SetBool(IsWalking, false);
+        }
 
         if (Input.GetKey(jumpKey) && _readyToJump && _grounded)
         {
