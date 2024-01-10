@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public class BasePunchingSystem : MonoBehaviour
 {
     public Animator animator;
+    public bool debugDraw;
     
     [Header("M1 punches info")]
     public List<M1PunchesInfo> m1Punches = new List<M1PunchesInfo>();
@@ -57,7 +58,7 @@ public class BasePunchingSystem : MonoBehaviour
         _dynamicHitBox.CreateHitBox(
             relativeBoxPosition: Vector3.forward * 1f,
             boxSize: new Vector3(1.5f, 2f, 1.5f),
-            debugDraw: true,
+            debugDraw: debugDraw,
             actionOnHit: (collider) =>
             {
                 Health healthComponent = collider.GetComponentInParent<Health>();
@@ -66,7 +67,7 @@ public class BasePunchingSystem : MonoBehaviour
                 if (!healthComponent || !rb)
                     return;
                 
-                healthComponent.TakeDamage(m1Punches[_currentBasePunch].damage);
+                healthComponent.TakeDamage(m1Punches[_currentBasePunch].damage, transform.position);
                 rb.AddForce(_dynamicHitBox.characterTransform.forward * 20f, ForceMode.Impulse);
                 _playerRigidBody.AddForce(_dynamicHitBox.characterTransform.forward * 20f, ForceMode.Impulse);
             });

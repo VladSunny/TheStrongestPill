@@ -92,7 +92,7 @@ public class PlayerHealth : Health
         }
     }
 
-    public override void TakeDamage(float damage)
+    public override void TakeDamage(float damage, Vector3? fromTransform)
     {
         base.TakeDamage(damage);
         

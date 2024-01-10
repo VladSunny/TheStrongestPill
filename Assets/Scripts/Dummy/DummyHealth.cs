@@ -79,9 +79,9 @@ public class DummyHealth : Health
     }
     
 
-    public override void TakeDamage(float damage)
+    public override void TakeDamage(float damage, Vector3? fromTransform)
     {
-        base.TakeDamage(damage);
+        base.TakeDamage(damage, fromTransform);
         
         _lerpTimer = 0f;
     }

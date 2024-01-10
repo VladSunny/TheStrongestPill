@@ -268,6 +268,7 @@ PrefabInstance:
     - {fileID: 4084470667951658538, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
     - {fileID: 2664485670410374330, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
     - {fileID: 7014567248852347854, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
+    - {fileID: 5483748758580422571, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
     m_RemovedGameObjects:
     - {fileID: 5185622058736576700, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
     - {fileID: 5276201427409047848, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
@@ -297,6 +298,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4815757977591132671, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
   m_PrefabInstance: {fileID: 8604869340287362064}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &5334805139703054610 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4423566251139769602, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
+  m_PrefabInstance: {fileID: 8604869340287362064}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7735104472079613421 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2031756321022106109, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
@@ -321,6 +327,8 @@ MonoBehaviour:
   debugInput: 1
   getDamageKey: 51
   restoreHealthKey: 52
+  damagedTrigger: Damaged
+  damageParticleSystem: {fileID: 5334805139703054610}
   chipSpeed: 2
   displayDistance: 20
   frontHealthBar: {fileID: 9103201990069360366}

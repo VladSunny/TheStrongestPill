@@ -70,7 +70,7 @@ public class DynamicHitBox : MonoBehaviour
                 
                 if (healthComponent != null)
                 {
-                    healthComponent.TakeDamage(healthComponent.debugDamage);
+                    healthComponent.TakeDamage(healthComponent.debugDamage, new Vector3());
                 }
 
                 if (rb != null)

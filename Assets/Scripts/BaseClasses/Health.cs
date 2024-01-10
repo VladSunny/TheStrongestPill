@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Health : MonoBehaviour
@@ -22,6 +23,9 @@ public class Health : MonoBehaviour
     [Header("Animation")] 
     public string damagedTrigger = "Damaged";
     protected Animator _animator;
+
+    [Header("Effects")] 
+    public ParticleSystem damageParticleSystem;
     
     // Start is called before the first frame update
     protected virtual void Start()
@@ -40,7 +44,7 @@ public class Health : MonoBehaviour
         if (debugInput)
             MyInput();
         
-        _health = Mathf.Clamp(_health, 0, maxHealth); 
+        _health = Mathf.Clamp(_health, 0, maxHealth);
     }
 
     protected virtual void MyInput()
@@ -51,11 +55,23 @@ public class Health : MonoBehaviour
             RestoreHealth(debugRestore);
     }
 
-    public virtual void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage, Vector3? fromTransform = null)
     {
+        
         _health -= damage;
         if (_animator)
             _animator.SetTrigger(damagedTrigger);
+        
+        if (damageParticleSystem)
+        {
+            
+            if (fromTransform.HasValue)
+                damageParticleSystem.transform.LookAt((Vector3)fromTransform);
+            else
+                damageParticleSystem.transform.forward = damageParticleSystem.transform.parent.forward;
+            
+            damageParticleSystem.Play();
+        }
     }
 
     public virtual void RestoreHealth(float healAmount)
