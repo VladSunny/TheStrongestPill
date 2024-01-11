@@ -17,6 +17,9 @@ public class DummyHealth : Health
     public Image backHealthBar;
     public Canvas dummyCanvas;
     
+    [SerializeField] private GameObject damagePopupPrefab;
+    [SerializeField] private Transform damagePopupPosition;
+    
     private Transform cameraTransform;
     
     
@@ -78,10 +81,22 @@ public class DummyHealth : Health
         }
     }
     
+    private void ShowDamage(float damage)
+    {
+        GameObject popup = Instantiate(damagePopupPrefab, damagePopupPosition.localPosition, Quaternion.identity);
+        popup.GetComponent<DamagePopup>().Setup(damage);
+        popup.transform.SetParent(transform, false);
+
+        // Позиционируем в UI, если используете Canvas с Render Mode 'Screen Space - Camera' или 'World Space'
+        // Для этого используйте Camera.main.WorldToScreenPoint() если ваш Canvas настроен на 'Screen Space - Camera'
+        // Или позиционируйте напрямую в мировом пространстве для 'World Space'
+    }
+    
 
     public override void TakeDamage(float damage, Vector3? fromTransform)
     {
         base.TakeDamage(damage, fromTransform);
+        ShowDamage(damage);
         
         _lerpTimer = 0f;
     }
