@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1061293216125369695
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1593965633818110928}
+  m_Layer: 6
+  m_Name: DamageTextCenter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1593965633818110928
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061293216125369695}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 125662430318042910}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4665239320229498288
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,7 +88,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -277,6 +308,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8562699979003689742, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2110422295369951002}
+    - targetCorrespondingSourceObject: {fileID: 8562699979003689742, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1593965633818110928}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2031756321022106109, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
       insertIndex: -1
@@ -334,6 +368,8 @@ MonoBehaviour:
   frontHealthBar: {fileID: 9103201990069360366}
   backHealthBar: {fileID: 6088393033002859662}
   dummyCanvas: {fileID: 6559578152482312207}
+  damagePopupPrefab: {fileID: 4255436815127969719, guid: 31df2b4a013879bb288b4df0a68d7c5d, type: 3}
+  damagePopupPosition: {fileID: 1593965633818110928}
 --- !u!114 &3811694619789667768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,8 +386,8 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
-  drawDebugBoxInEditor: 1
-  debugPunch: 1
+  drawDebugBoxInEditor: 0
+  debugPunch: 0
   punchKey: 54
 --- !u!114 &2330279714601707514
 MonoBehaviour:

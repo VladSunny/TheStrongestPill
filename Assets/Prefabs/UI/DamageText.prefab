@@ -112,6 +112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2504723242925667246}
   - component: {fileID: 1923555240380738666}
+  - component: {fileID: 4718322209968048724}
   m_Layer: 6
   m_Name: DamageText
   m_TagString: Untagged
@@ -147,9 +148,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b410410337457f2b3e54cd8128fcd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disappearTimer: 1
-  randomizePositionFrom: {x: -2, y: -1, z: 1.5}
+  lifeTime: 1
+  randomizePositionFrom: {x: -2, y: -0.5, z: 1.7}
   randomizePositionTo: {x: 2, y: 2, z: 2}
+--- !u!95 &4718322209968048724
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4255436815127969719}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ca7aeb5bd74a93688969d85faa224a9e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7285164110369544816
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,7 +237,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '999
+  m_text: '-999
 
 '
   m_isRightToLeft: 0
