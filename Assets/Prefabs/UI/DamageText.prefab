@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 2504723242925667246}
   - component: {fileID: 1923555240380738666}
   - component: {fileID: 4718322209968048724}
+  - component: {fileID: -8371154516918368822}
   m_Layer: 6
   m_Name: DamageText
   m_TagString: Untagged
@@ -172,6 +173,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-8371154516918368822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4255436815127969719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16343839a89b8d03bb1b7fa78ffe2564, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayDistance: 20
+  canvas: {fileID: 1066452927884869117}
 --- !u!1 &7285164110369544816
 GameObject:
   m_ObjectHideFlags: 0

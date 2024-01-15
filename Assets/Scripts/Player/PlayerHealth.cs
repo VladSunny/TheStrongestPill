@@ -15,7 +15,7 @@ public class PlayerHealth : Health
     public Image backHealthBar;
     
     [Header("Damage Overlay")] 
-    public Image overlay = null;
+    public Image overlay;
     public float duration;
     public float fadeSpeed;
     public float maxAlpha = 0.5f;
@@ -28,7 +28,7 @@ public class PlayerHealth : Health
     {
         base.Start();
         
-        if (overlay != null)
+        if (overlay)
             overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0);
     }
 
@@ -43,6 +43,12 @@ public class PlayerHealth : Health
 
     private void UpdateHealthUI()
     {
+        if (!frontHealthBar || !backHealthBar)
+        {
+            Debug.Log("Dont have front and back healthbar");
+            return;
+        }
+        
         // Debug.Log(_health);
         float fillF = frontHealthBar.fillAmount;
         float fillB = backHealthBar.fillAmount;
@@ -75,8 +81,9 @@ public class PlayerHealth : Health
 
     private void UpdateDamageOverlayUI()
     {
-        if (overlay == null)
+        if (!overlay)
             return;
+        
         if (overlay.color.a > 0)
         {
             if (_health < 30)
@@ -92,14 +99,15 @@ public class PlayerHealth : Health
         }
     }
 
-    public override void TakeDamage(float damage, Vector3? fromTransform)
+    public override void TakeDamage(float damage, Vector3? fromTransform = null)
     {
-        base.TakeDamage(damage);
+        base.TakeDamage(damage, fromTransform);
         
         _lerpTimer = 0f;
         _durationTimer = 0f;
         
-        overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, maxAlpha);
+        if (overlay)
+            overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, maxAlpha);
     }
 
     public override void RestoreHealth(float healAmount)

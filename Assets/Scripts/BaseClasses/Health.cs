@@ -26,6 +26,8 @@ public class Health : MonoBehaviour
 
     [Header("Effects")] 
     public ParticleSystem damageParticleSystem;
+    [SerializeField] private GameObject damagePopupPrefab;
+    [SerializeField] private Transform damagePopupPosition;
     
     // Start is called before the first frame update
     protected virtual void Start()
@@ -54,6 +56,13 @@ public class Health : MonoBehaviour
         if (Input.GetKeyDown(restoreHealthKey))
             RestoreHealth(debugRestore);
     }
+    
+    private void ShowDamage(float damage)
+    {
+        GameObject popup = Instantiate(damagePopupPrefab, damagePopupPosition.localPosition, Quaternion.identity);
+        popup.GetComponent<DamagePopup>().Setup(damage);
+        popup.transform.SetParent(transform, false);
+    }
 
     public virtual void TakeDamage(float damage, Vector3? fromTransform = null)
     {
@@ -64,7 +73,6 @@ public class Health : MonoBehaviour
         
         if (damageParticleSystem)
         {
-            
             if (fromTransform.HasValue)
                 damageParticleSystem.transform.LookAt((Vector3)fromTransform);
             else
@@ -72,6 +80,9 @@ public class Health : MonoBehaviour
             
             damageParticleSystem.Play();
         }
+        
+        if (damagePopupPrefab && damagePopupPosition != null)
+            ShowDamage(damage);
     }
 
     public virtual void RestoreHealth(float healAmount)

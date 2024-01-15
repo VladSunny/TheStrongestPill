@@ -15,12 +15,6 @@ public class DamagePopup : MonoBehaviour
     private TextMeshProUGUI damageText;
     private float disappearTimer;
 
-
-    private void Start()
-    {
-        // Setup(100);
-    }
-
     private void OnEnable()
     {
         if (Camera.main != null)
@@ -47,22 +41,18 @@ public class DamagePopup : MonoBehaviour
 
     private void Update()
     {
-        if (Camera.main != null)
-        {
-            transform.LookAt(transform.position + Camera.main.transform.rotation * Vector3.forward, Camera.main.transform.rotation * Vector3.up);
-        }
-        
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-            Setup(Random.Range(0, 999));
+        // if (Camera.main != null)
+        // {
+        //     transform.LookAt(transform.position + Camera.main.transform.rotation * Vector3.forward, Camera.main.transform.rotation * Vector3.up);
+        // }
+        //
+        // if (Input.GetKeyDown(KeyCode.Alpha6))
+        //     Setup(Random.Range(0, 999));
         
         disappearTimer -= Time.deltaTime;
         if (disappearTimer < 0)
         {
             Destroy(gameObject);
-        }
-        else
-        {
-            
         }
     }
 }
