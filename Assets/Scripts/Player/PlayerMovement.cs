@@ -25,6 +25,8 @@ public class PlayerMovement : CharacterMovement
     }
     protected override void MovementStateHandler()
     {
+        base.MovementStateHandler();
+        
         if (_grounded && Input.GetKey(sprintKey))
         {
             state = MovementState.sprinting;

@@ -41,14 +41,6 @@ public class DamagePopup : MonoBehaviour
 
     private void Update()
     {
-        // if (Camera.main != null)
-        // {
-        //     transform.LookAt(transform.position + Camera.main.transform.rotation * Vector3.forward, Camera.main.transform.rotation * Vector3.up);
-        // }
-        //
-        // if (Input.GetKeyDown(KeyCode.Alpha6))
-        //     Setup(Random.Range(0, 999));
-        
         disappearTimer -= Time.deltaTime;
         if (disappearTimer < 0)
         {

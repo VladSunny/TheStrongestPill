@@ -20,6 +20,7 @@ public class CharacterMovement : MonoBehaviour
     protected Animator _animator;
     protected static readonly int IsWalking = Animator.StringToHash("isWalking");
     protected static readonly int Velocity = Animator.StringToHash("Velocity");
+    protected static readonly int IsAir = Animator.StringToHash("isAir");
     
     protected bool _readyToJump;
     
@@ -71,10 +72,12 @@ public class CharacterMovement : MonoBehaviour
         {
             state = MovementState.walking;
             _currentMoveSpeed = walkSpeed;
+            _animator.SetBool(IsAir, false);
         }
         else
         {
             state = MovementState.air;
+            _animator.SetBool(IsAir, true);
         }
     }
     
