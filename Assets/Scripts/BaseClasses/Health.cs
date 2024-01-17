@@ -21,7 +21,9 @@ public class Health : MonoBehaviour
     public KeyCode restoreHealthKey = KeyCode.Alpha2;
 
     [Header("Animation")] 
-    public string damagedTrigger = "Damaged";
+    protected static readonly int DamagedTrigger = Animator.StringToHash("Damaged");
+    protected static readonly int XDamaged = Animator.StringToHash("XDamaged");
+    protected static readonly int ZDamaged = Animator.StringToHash("ZDamaged");
     protected Animator _animator;
 
     [Header("Effects")] 
@@ -68,8 +70,6 @@ public class Health : MonoBehaviour
     {
         
         _health -= damage;
-        if (_animator)
-            _animator.SetTrigger(damagedTrigger);
         
         if (damageParticleSystem)
         {
@@ -83,6 +83,21 @@ public class Health : MonoBehaviour
         
         if (damagePopupPrefab && damagePopupPosition != null)
             ShowDamage(damage);
+
+        if (fromTransform.HasValue)
+        {
+            Vector3 direction = (Vector3) fromTransform - transform.position;
+            Vector2 directionXZ = new Vector2(direction.x, direction.z);
+            Vector2 normalizedDirection = directionXZ.normalized;
+            
+            _animator.SetFloat(XDamaged, normalizedDirection.x);
+            _animator.SetFloat(ZDamaged, normalizedDirection.y);
+            
+            // Debug.DrawLine(transform.position, (Vector3)fromTransform, Color.green, 5f);
+        }
+        
+        if (_animator)
+            _animator.SetTrigger(DamagedTrigger);
     }
 
     public virtual void RestoreHealth(float healAmount)

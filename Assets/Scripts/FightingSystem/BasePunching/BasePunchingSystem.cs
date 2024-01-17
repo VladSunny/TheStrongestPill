@@ -23,9 +23,10 @@ public class BasePunchingSystem : MonoBehaviour
     [System.Serializable]
     public struct M1PunchesInfo
     {
-        public float damage;
+        public float damage; // 5
         public string attackTrigger;
-        public float cooldown;
+        public float cooldown; // 0.5
+        public float force; // 20
     }
     
     protected virtual void Awake()
@@ -68,8 +69,14 @@ public class BasePunchingSystem : MonoBehaviour
                     return;
                 
                 healthComponent.TakeDamage(m1Punches[_currentBasePunch].damage, transform.position);
-                rb.AddForce(_dynamicHitBox.characterTransform.forward * 20f, ForceMode.Impulse);
-                _playerRigidBody.AddForce(_dynamicHitBox.characterTransform.forward * 20f, ForceMode.Impulse);
+                rb.AddForce(
+                    _dynamicHitBox.characterTransform.forward * m1Punches[_currentBasePunch].force,
+                    ForceMode.Impulse
+                    );
+                _playerRigidBody.AddForce(
+                    _dynamicHitBox.characterTransform.forward * m1Punches[_currentBasePunch].force,
+                    ForceMode.Impulse
+                    );
             });
     }
 }
