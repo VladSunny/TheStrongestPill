@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 public class BasePunchingSystem : MonoBehaviour
 {
-    public Animator animator;
+    private Animator _animator;
     public bool debugDraw;
     
     [Header("M1 punches info")]
@@ -33,6 +33,7 @@ public class BasePunchingSystem : MonoBehaviour
     {
         _dynamicHitBox = GetComponent<DynamicHitBox>();
         _playerRigidBody = GetComponent<Rigidbody>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -55,7 +56,7 @@ public class BasePunchingSystem : MonoBehaviour
         _currentBasePunch %= m1Punches.Count;
         _currentStan = m1Punches[_currentBasePunch].cooldown;
         
-        animator.SetTrigger(m1Punches[_currentBasePunch].attackTrigger);
+        _animator.SetTrigger(m1Punches[_currentBasePunch].attackTrigger);
         _dynamicHitBox.CreateHitBox(
             relativeBoxPosition: Vector3.forward * 1f,
             boxSize: new Vector3(1.5f, 2f, 1.5f),

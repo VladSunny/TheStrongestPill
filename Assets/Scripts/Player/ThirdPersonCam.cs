@@ -9,6 +9,7 @@ public class ThirdPersonCam : MonoBehaviour
     public Transform orientation;
     public Transform player;
     public Transform playerObj;
+    public Transform playerBody;
     public Rigidbody rb;
     public GameObject crosshair;
     
@@ -29,7 +30,8 @@ public class ThirdPersonCam : MonoBehaviour
     public enum CameraStyle
     {
         Basic,
-        Combat
+        Combat,
+        Death
     }
 
     private void Start()
@@ -74,6 +76,18 @@ public class ThirdPersonCam : MonoBehaviour
             orientation.rotation = rotation;
             playerObj.rotation = rotation;
 
+        }
+        
+        if (currentStyle == CameraStyle.Death)
+        {
+            Vector3 viewDir = playerBody.localPosition - new Vector3(transform.position.x, playerBody.localPosition.y, transform.position.z);
+            orientation.forward = viewDir.normalized;
+            
+            Vector3 inputDir = orientation.forward * _verticalInput + orientation.right * _horisontalInput;
+
+            if (inputDir != Vector3.zero)
+                playerBody.forward =
+                    Vector3.Slerp(playerBody.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
         }
     }
 

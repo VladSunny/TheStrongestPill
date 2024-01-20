@@ -52,6 +52,7 @@ public class PlayerMovement : CharacterMovement
     {
         base.Update();
         MyInput();
+        _animator.SetFloat(Velocity, _rb.velocity.magnitude);
     }
 
     protected override void FixedUpdate()
@@ -66,7 +67,6 @@ public class PlayerMovement : CharacterMovement
         
         if (_horizontalInput != 0f || _verticalInput != 0f)
         {
-            _animator.SetFloat(Velocity, _rb.velocity.magnitude);
             _animator.SetBool(IsWalking, true);
         }
         else
