@@ -10,38 +10,28 @@ public class ThirdPersonCam : MonoBehaviour
     public Transform player;
     public Transform playerObj;
     public Transform playerBody;
-    public Rigidbody rb;
     public GameObject crosshair;
+
+    private CameraSwitcher _cameraSwitcher;
     
     [Header("Keybinds")]
     public KeyCode changeCameraStyleKey = KeyCode.Tab;
 
     public float rotationSpeed;
-
-    [Header("Cameras")]
-    public GameObject basicCamera;
-    public GameObject combatCamera;
+    
     public Transform combatLookAt;
-    public CameraStyle currentStyle = CameraStyle.Combat;
     
     private float _horisontalInput;
     private float _verticalInput;
-    
-    public enum CameraStyle
+
+    private void Awake()
     {
-        Basic,
-        Combat,
-        Death
+        _cameraSwitcher = GetComponent<CameraSwitcher>();
     }
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
-        combatCamera.SetActive(currentStyle == CameraStyle.Combat);
-        crosshair.SetActive(currentStyle == CameraStyle.Combat);
-        basicCamera.SetActive(currentStyle == CameraStyle.Basic);
     }
 
     private void Update()
@@ -51,9 +41,12 @@ public class ThirdPersonCam : MonoBehaviour
 
     private void LateUpdate()
     {
+        CameraSwitcher.CameraType currentStyle = _cameraSwitcher.GetCurrentActiveCamera();
         
-        if (currentStyle == CameraStyle.Basic)
+        if (currentStyle == CameraSwitcher.CameraType.BaseCamera)
         {
+            crosshair.SetActive(false);
+            
             Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
             orientation.forward = viewDir.normalized;
             
@@ -64,11 +57,9 @@ public class ThirdPersonCam : MonoBehaviour
                     Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
         }
         
-        else if (currentStyle == CameraStyle.Combat)
+        else if (currentStyle == CameraSwitcher.CameraType.CombatCamera)
         { 
-            // Vector3 dirToCombatLookAt = combatLookAt.position - new Vector3(transform.position.x, combatLookAt.position.y, transform.position.z);
-            // orientation.forward = dirToCombatLookAt.normalized;
-            // playerObj.forward = dirToCombatLookAt.normalized;
+            crosshair.SetActive(true);
             
             Vector3 dirToCombatLookAt = combatLookAt.position - new Vector3(transform.position.x, combatLookAt.position.y, transform.position.z);
             Quaternion rotation = Quaternion.LookRotation(dirToCombatLookAt.normalized);
@@ -78,24 +69,11 @@ public class ThirdPersonCam : MonoBehaviour
 
         }
         
-        if (currentStyle == CameraStyle.Death)
+        if (currentStyle == CameraSwitcher.CameraType.DeathCamera)
         {
-            Vector3 viewDir = playerBody.localPosition - new Vector3(transform.position.x, playerBody.localPosition.y, transform.position.z);
-            orientation.forward = viewDir.normalized;
-            
-            Vector3 inputDir = orientation.forward * _verticalInput + orientation.right * _horisontalInput;
-
-            if (inputDir != Vector3.zero)
-                playerBody.forward =
-                    Vector3.Slerp(playerBody.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
+            crosshair.SetActive(false);
         }
     }
-
-    private void FixedUpdate()
-    {
-        
-    }
-
     private void MyInput()
     {
         _horisontalInput = Input.GetAxis("Horizontal");
@@ -103,20 +81,20 @@ public class ThirdPersonCam : MonoBehaviour
         
         if (Input.GetKeyDown(changeCameraStyleKey))
         {
-            combatCamera.SetActive(!combatCamera.activeSelf);
-            basicCamera.SetActive(!basicCamera.activeSelf);
+            CameraSwitcher.CameraType currentStyle = _cameraSwitcher.GetCurrentActiveCamera();
 
-            if (basicCamera.activeSelf)
+            if (currentStyle == CameraSwitcher.CameraType.BaseCamera)
             {
-                currentStyle = CameraStyle.Basic;
-                crosshair.SetActive(false);
+                _cameraSwitcher.SwitchCamera(CameraSwitcher.CameraType.CombatCamera);
             }
-            else if (combatCamera.activeSelf)
+            else
             {
-                currentStyle = CameraStyle.Combat;
-                crosshair.SetActive(true);
+                _cameraSwitcher.SwitchCamera(CameraSwitcher.CameraType.BaseCamera);
             }
         }
+        
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+            _cameraSwitcher.SwitchCamera(CameraSwitcher.CameraType.DeathCamera);
         
     }
 

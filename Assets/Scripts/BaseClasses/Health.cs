@@ -31,6 +31,10 @@ public class Health : MonoBehaviour
     [SerializeField] private GameObject damagePopupPrefab;
     [SerializeField] private Transform damagePopupPosition;
     
+
+    private bool _isAlive = true;
+    private RagdollHandler _ragdollHandler;
+    
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -40,6 +44,7 @@ public class Health : MonoBehaviour
     protected virtual void Awake()
     {
         _animator = GetComponentInChildren<Animator>();
+        _ragdollHandler = GetComponentInChildren<RagdollHandler>();
     }
 
     // Update is called once per frame
@@ -92,16 +97,26 @@ public class Health : MonoBehaviour
             
             _animator.SetFloat(XDamaged, normalizedDirection.x);
             _animator.SetFloat(ZDamaged, normalizedDirection.y);
-            
-            // Debug.DrawLine(transform.position, (Vector3)fromTransform, Color.green, 5f);
         }
         
         if (_animator)
             _animator.SetTrigger(DamagedTrigger);
+
+        if (_health <= 0 && _isAlive)
+        {
+            _isAlive = false;
+            Death();
+        }
     }
 
     public virtual void RestoreHealth(float healAmount)
     {
         _health += healAmount;
+    }
+
+    protected virtual void Death()
+    {
+        if (_ragdollHandler)
+            _ragdollHandler.Enable();
     }
 }

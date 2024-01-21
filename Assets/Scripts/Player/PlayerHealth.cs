@@ -19,6 +19,9 @@ public class PlayerHealth : Health
     public float duration;
     public float fadeSpeed;
     public float maxAlpha = 0.5f;
+
+    [Header("Camera")]
+    public CameraSwitcher _CameraSwitcher;
     
     
     private float _durationTimer;
@@ -116,5 +119,12 @@ public class PlayerHealth : Health
         
         _health += healAmount;
         _lerpTimer = 0f;
+    }
+
+    protected override void Death()
+    {
+        base.Death();
+        if (_CameraSwitcher)
+            _CameraSwitcher.SwitchCamera(CameraSwitcher.CameraType.DeathCamera);
     }
 }

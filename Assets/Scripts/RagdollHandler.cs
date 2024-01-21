@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class RagdollHandler : MonoBehaviour
 {
+    public bool DebugRagdoll = false;
+    
     private List<Rigidbody> _rigidbodies;
     private Rigidbody _playerRigidbody;
     private List<Collider> _colliders;
@@ -61,7 +63,7 @@ public class RagdollHandler : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H))
+        if (DebugRagdoll && Input.GetKeyDown(KeyCode.H))
         {
             if (!IsRagdoll)
                 Enable();

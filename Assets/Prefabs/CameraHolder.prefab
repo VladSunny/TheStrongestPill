@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4604053669554701903}
   - component: {fileID: 3837266258549381672}
   - component: {fileID: 4684531774128811141}
+  - component: {fileID: 8643196603675298542}
   m_Layer: 0
   m_Name: PlayerCam
   m_TagString: MainCamera
@@ -28,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1761239956258596036}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18288854, y: -0.12473716, z: 0.023400161, w: 0.97490764}
-  m_LocalPosition: {x: 53.734444, y: 40.007874, z: -92.89692}
+  m_LocalRotation: {x: 0.11559233, y: 0.000000034182086, z: -0.0000000039778514, w: 0.9932968}
+  m_LocalPosition: {x: 51.749645, y: 39.007874, z: -94.6508}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -68,7 +69,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 45
+  field of view: 50
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -143,14 +144,30 @@ MonoBehaviour:
   orientation: {fileID: 0}
   player: {fileID: 0}
   playerObj: {fileID: 0}
-  rb: {fileID: 0}
+  playerBody: {fileID: 0}
   crosshair: {fileID: 0}
   changeCameraStyleKey: 9
   rotationSpeed: 7
-  basicCamera: {fileID: 0}
-  combatCamera: {fileID: 0}
   combatLookAt: {fileID: 0}
-  currentStyle: 0
+--- !u!114 &8643196603675298542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761239956258596036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 270414d51984b06058d6ad5e5efd8fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraSetups:
+  - type: 0
+    camera: {fileID: 0}
+  - type: 1
+    camera: {fileID: 0}
+  - type: 2
+    camera: {fileID: 0}
 --- !u!1 &7330486458924882403
 GameObject:
   m_ObjectHideFlags: 0
