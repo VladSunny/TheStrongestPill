@@ -287,7 +287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4866988668585466627, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
       propertyPath: m_Name
-      value: PlayerBOdy
+      value: PlayerBody
       objectReference: {fileID: 0}
     - target: {fileID: 5289212992056461080, guid: 78ea4b5b34bdf056f9b0843563cd30b2, type: 3}
       propertyPath: m_Enabled
@@ -452,7 +452,6 @@ MonoBehaviour:
   debugInput: 1
   getDamageKey: 51
   restoreHealthKey: 52
-  damagedTrigger: Damaged
   damageParticleSystem: {fileID: 5334805139703054610}
   damagePopupPrefab: {fileID: 4255436815127969719, guid: 31df2b4a013879bb288b4df0a68d7c5d, type: 3}
   damagePopupPosition: {fileID: 1593965633818110928}
@@ -463,6 +462,7 @@ MonoBehaviour:
   duration: 0.5
   fadeSpeed: 1
   maxAlpha: 0.4
+  _CameraSwitcher: {fileID: 0}
 --- !u!1001 &9000344679643179307
 PrefabInstance:
   m_ObjectHideFlags: 0

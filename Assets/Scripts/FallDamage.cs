@@ -6,13 +6,13 @@ public class FallDamage : MonoBehaviour
     [Header("GroundCheck")]
     public LayerMask whatIsGround;
     
-    public float safeFallDistance = 5f; // безопасное расстояние падения, не причиняет урона
-    public float maxFallDistance = 20f; // максимальное расстояние падения, после которого урон будет максимален
-    public int maxDamage = 50; // максимальный урон от падения
+    public float safeFallDistance = 5f;
+    public float maxFallDistance = 20f;
+    public int maxDamage = 50;
 
     private Vector3 lastGroundedPosition;
     private bool isFalling = false;
-    private Health healthComponent; // ссылка на скрипт здоровья
+    private Health healthComponent;
 
     void Start()
     {
@@ -22,17 +22,15 @@ public class FallDamage : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(isGrounded());
-        // Проверяем, касаемся ли мы земли
+        
         if (isGrounded())
         {
             if (isFalling)
             {
-                // Вычисляем урон от падения на основе разницы в высоте
+                
                 float fallDistance = lastGroundedPosition.y - transform.position.y;
                 if (fallDistance > safeFallDistance)
                 {
-                    Debug.Log("Fall Damage");
                     float damagePercent = Mathf.Clamp01((fallDistance - safeFallDistance) / (maxFallDistance - safeFallDistance));
                     int damage = Mathf.RoundToInt(damagePercent * maxDamage);
                     healthComponent.TakeDamage(damage);
@@ -41,7 +39,7 @@ public class FallDamage : MonoBehaviour
                 isFalling = false;
             }
 
-            // Обновляем последнюю позицию, когда были на земле
+            
             lastGroundedPosition = transform.position;
         }
         else
@@ -52,9 +50,7 @@ public class FallDamage : MonoBehaviour
 
     private bool isGrounded()
     {
-        // Метод для проверки, находится ли персонаж на земле
-        // Реализация может быть простой проверкой коллизии или более сложным образом, например, с использованием raycast
-        Debug.DrawRay(transform.position, -Vector3.up * 1.3f, Color.green);
+        // Debug.DrawRay(transform.position, -Vector3.up * 1.3f, Color.green);
         return Physics.Raycast(transform.position, -Vector3.up, 1.3f, whatIsGround);
     }
 }
