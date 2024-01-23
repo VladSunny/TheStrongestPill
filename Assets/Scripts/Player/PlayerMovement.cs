@@ -105,8 +105,10 @@ public class PlayerMovement : CharacterMovement
     private void Jump()
     {
         _exitingSlope = true;
-            
-        _rb.velocity = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
+
+        var velocity = _rb.velocity;
+        velocity = new Vector3(velocity.x, 0f, velocity.z);
+        _rb.velocity = velocity;
         _rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
 
