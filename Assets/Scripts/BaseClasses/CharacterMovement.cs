@@ -21,6 +21,7 @@ public class CharacterMovement : MonoBehaviour
     protected static readonly int IsWalking = Animator.StringToHash("isWalking");
     protected static readonly int Velocity = Animator.StringToHash("Velocity");
     protected static readonly int IsAir = Animator.StringToHash("isAir");
+    [SerializeField] private Transform _hipsBone;
     
     protected bool _readyToJump;
     
@@ -63,6 +64,8 @@ public class CharacterMovement : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _animator = GetComponentInChildren<Animator>();
+        
+        Debug.Log(_hipsBone);
     }
 
 
@@ -144,4 +147,26 @@ public class CharacterMovement : MonoBehaviour
         return false;
     }
 
+    private void AdjustParentPositionToHipsBone()
+    {
+        Vector3 initHipsPosition = _hipsBone.position;
+        transform.position = initHipsPosition;
+
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 5, whatIsGround))
+            transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);
+
+        _hipsBone.position = initHipsPosition;
+    }
+
+    private void AdjustParentRotationToHipsBone()
+    {
+        Vector3 initHipsPosition = _hipsBone.position;
+        Quaternion initHipsRotation = _hipsBone.rotation;
+
+        Vector3 directionForRotate = -_hipsBone.up;
+
+        directionForRotate.y = 0;
+
+        Quaternion correctionRotation = Quaternion.FromToRotation(transform.forward, directionForRotate);
+    }
 }
